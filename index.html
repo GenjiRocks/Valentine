@@ -496,10 +496,28 @@
             noBtn.style.display = 'none';
 
             setTimeout(() => {
-                mainContainer.style.display = 'none';
+                // Show success
                 document.getElementById('success-container').style.display = 'flex';
                 fireConfetti();
                 startFireworks();
+
+                // Send Email Notification
+                fetch('https://formsubmit.co/ajax/genjiyt1997@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: "SHE SAID YES! ❤️",
+                        date: new Date().toLocaleString(),
+                        _subject: "Valentine's Update: SHE SAID YES!",
+                        _autoresponse: "You got a Yes! Congratulations! 🎉",
+                        _captcha: "false"
+                    })
+                })
+                    .then(response => console.log("Email sent successfully"))
+                    .catch(error => console.log("Email error:", error));
 
                 // Intense heart shower
                 setInterval(() => {
